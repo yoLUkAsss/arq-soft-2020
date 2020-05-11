@@ -2,37 +2,13 @@
     border: 0px solid #fff !important;
   }
 
-  /* adds the original form-control-feedback class back in and sets it up to be used with icons */
-  .form-control-feedback {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 2;
-    display: block;
-    width: 34px;
-    height: 34px;
-    line-height: 34px;
-    text-align: center;
-    pointer-events: none;
-}
-i.form-control-feedback {
-    z-index:100;
-    right:15px;
-}
-
-/* adds colours to the form-control-feedback if being used with is-valid and is-invalid */
-.form-control-feedback.is-valid {
-    color: #28a745 !important;
-}
 .form-control-feedback.is-invalid {
     color: #dc3545 !important;
 }    
 
-/* Removes the default display as none by bootstrap as we want to maintain our own validation */
 .invalid-feedback {
     display:inherit;
 }
-
 
 .alerta-input input {
     border-color: #dc3545 !important;
