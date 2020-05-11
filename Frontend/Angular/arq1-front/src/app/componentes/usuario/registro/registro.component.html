@@ -1,51 +1,71 @@
 <section id="register" class="mb-5 mt-5">
-    <div class="container">
-      <div class="row">
-  
-        <div class="col-xs-12 col-sm-6 col-md-4 mx-auto">
-          <div class="card_register">
-            <div class="card">
-              <div class="card-body text-center">
-                <form>
-                  <h1 class="h3 mb-3 font-weight-normal">Registro</h1>
-                  <div class="form-group">
-                    <input type="text" name="nombre" class="form-control" placeholder="Nombre completo" required minlength="4"
-                      maxlength="15">
-                  </div>
-                  <div class="form-group">
-                    <input type="email" name="email" class="form-control" placeholder="Email" required
-                      minlength="8">
-                  </div>
+  <div class="container">
+    <div class="row">
 
-                  <div class="form-group">
-                    <input type="text" name="telefono" class="form-control" placeholder="Teléfono" required>
-                  </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 mx-auto">
+        <div class="card_register">
+          <div class="card">
+            <div class="card-body text-center">
+              <form #formRegistro="ngForm" (ngSubmit)="registrar(formRegistro)">
+                <h1 class="h3 mb-3 font-weight-normal">Registro</h1>
+                <div class="form-group" [ngClass] ="{'alerta-input': isError}" >
+                  <input type="text" #nombre="ngModel" name="nombre" class="form-control" placeholder="Nombre completo" [(ngModel)]="usuario.nombre" required>
+                    <div class="invalid-feedback is-invalid" *ngIf="isError">
+                      Este campo es requerido
+                    </div>
+                </div>
 
-                  <div class="form-group">
-                    <input type="text" name="entidad" class="form-control" placeholder="Entidad" required>
+                <div class="form-group" [ngClass] ="{'alerta-input': isError}">
+                  <input type="email" name="email" class="form-control" placeholder="Email" required>
+                  <div class="invalid-feedback is-invalid" *ngIf="isError">
+                    Este campo es requerido
                   </div>
+                </div>
 
-                  <div class="form-group">
-                    <input type="text" name="entidad" class="form-control" placeholder="Cargo" required>
+                <div class="form-group" [ngClass] ="{'alerta-input': isError}">
+                  <input type="text" name="telefono" class="form-control" placeholder="Teléfono" required>
+                  <div class="invalid-feedback is-invalid" *ngIf="isError">
+                    Este campo es requerido
                   </div>
+                </div>
 
-                  <div class="form-group">
-                    <input type="text" name="entidad" class="form-control" placeholder="Localidad" required>
+                <div class="form-group" [ngClass] ="{'alerta-input': isError}">
+                  <input type="text" name="entidad" class="form-control" placeholder="Entidad" required>
+                  <div class="invalid-feedback is-invalid" *ngIf="isError">
+                    Este campo es requerido
                   </div>
-                 
-                  <div class="form-group">
-                    <input type="password" name="password" class="form-control" placeholder="Contraseña"
-                      required minlength="5" maxlength="10">
+                </div>
+
+                <div class="form-group" [ngClass] ="{'alerta-input': isError}">
+                  <input type="text" name="entidad" class="form-control" placeholder="Cargo" required>
+                  <div class="invalid-feedback is-invalid" *ngIf="isError">
+                    Este campo es requerido
                   </div>
-                  <button type="submit" class="btn btn-lg btn-primary btn-block">Registrar</button>
-                  <div class="form-group">
-                    <a routerLink="/login" class="form-control login-user"> ¿Ya tenés una cuenta? Ingresá!</a>
+                </div>
+
+                <div class="form-group" [ngClass] ="{'alerta-input': isError}">
+                  <input type="text" name="entidad" class="form-control" placeholder="Localidad" required>
+                  <div class="invalid-feedback is-invalid" *ngIf="isError">
+                    Este campo es requerido
                   </div>
-                </form>
-              </div>
+                </div>
+
+                <div class="form-group" [ngClass] ="{'alerta-input': isError}">
+                  <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
+                  <div class="invalid-feedback is-invalid" *ngIf="isError">
+                    Este campo es requerido
+                  </div>
+                </div>
+    
+                <button type="submit" class="btn btn-lg btn-primary btn-block">Registrar</button>
+                <div class="form-group">
+                  <a routerLink="/login" class="form-control login-user"> ¿Ya tenés una cuenta? Ingresá!</a>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
