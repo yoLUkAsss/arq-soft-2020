@@ -1,7 +1,15 @@
-## Execute
+## Prerequisitos
+
+```bash
+docker pull mongodb
+
+docker run -d -p 27017-27019:27017-27019 --name mongodb mongo
+```
+
+## Ejecucion
 
 ```
 npm run dev
 ```
 
-and play with `localhost:8080`
+el servidor estara disponible en: `localhost:8080`
