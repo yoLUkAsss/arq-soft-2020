@@ -6,8 +6,9 @@ export class Usuario{
     cargo:string;
     localidad:string;
     entidad:string;
+    password:string;
 
-    constructor(id:number, nombre:string, email:string, telefono:string, cargo:string, localidad:string, entidad:string){
+    constructor(id:number, nombre:string, email:string, telefono:string, cargo:string, localidad:string, entidad:string, password:string){
         this.id = id;
         this.nombre = nombre;
         this.email = email;
@@ -15,5 +16,6 @@ export class Usuario{
         this.cargo = cargo;
         this.localidad = localidad;
         this.entidad = entidad;
+        this.password = password;
     }
 }

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Usuario } from 'src/app/modelo/usuario';
+import { Validaciones } from '../../validaciones/validaciones';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MustMatch } from '../../validaciones/must-match.validator';
 
 @Component({
   selector: 'app-registro',
@@ -9,34 +12,37 @@ import { Usuario } from 'src/app/modelo/usuario';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
+  registerForm: FormGroup;
+  submitted = false;
+  usuario:Usuario = new Usuario(null, "", "", "", "", "","", null);
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private formBuilder: FormBuilder) {}
 
-  usuario:Usuario = new Usuario(null, "", "", "", "", "","");
-  public isError = false;
-  public msgError = '';
+  get f() { return this.registerForm.controls; }
 
+  onSubmit() {
+    this.submitted = true;
 
-  ngOnInit(): void {
+    if (this.registerForm.valid) 
+      this.router.navigate(['/inicio'])
   }
 
-  registrar(form:NgForm){
-
-    if(form.valid){
-      this.router.navigate(['/inicio']);
-      console.log("El registro se realizó satisfactoriamente");
-    }
-    else {
-      this.onIsError();
-    }
+  ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      nombre: ['', Validators.required],
+      telefono: ['', Validators.required],
+      entidad: ['', Validators.required],
+      cargo: ['', Validators.required],
+      localidad: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmarPassword: ['', Validators.required]
+    }, {
+      validator: MustMatch('password', 'confirmarPassword')
+    });
   }
 
-
-  onIsError(): void {
-    this.isError = true;
-    setTimeout(() => {
-      this.isError = false;
-    }, 5000);
+  
   }
-}
+
 
