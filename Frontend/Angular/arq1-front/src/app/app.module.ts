@@ -12,9 +12,6 @@ import { RegistroComponent } from './componentes/usuario/registro/registro.compo
 import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 
-/* Validaciones */
-import { Validaciones } from './componentes/validaciones/validaciones';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +26,7 @@ import { Validaciones } from './componentes/validaciones/validaciones';
     FormsModule, 
     ReactiveFormsModule
   ],
-  providers: [Validaciones],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

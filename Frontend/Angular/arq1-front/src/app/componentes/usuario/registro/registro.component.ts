@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
 import { Usuario } from 'src/app/modelo/usuario';
-import { Validaciones } from '../../validaciones/validaciones';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../../validaciones/must-match.validator';
 
@@ -12,23 +10,23 @@ import { MustMatch } from '../../validaciones/must-match.validator';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
-  registerForm: FormGroup;
+  formularioRegistro: FormGroup;
   submitted = false;
   usuario:Usuario = new Usuario(null, "", "", "", "", "","", null);
 
   constructor(private router: Router, private formBuilder: FormBuilder) {}
 
-  get f() { return this.registerForm.controls; }
+  get f() { return this.formularioRegistro.controls; }
 
-  onSubmit() {
+  registrar() {
     this.submitted = true;
 
-    if (this.registerForm.valid) 
+    if (this.formularioRegistro.valid) 
       this.router.navigate(['/inicio'])
   }
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
+    this.formularioRegistro = this.formBuilder.group({
       nombre: ['', Validators.required],
       telefono: ['', Validators.required],
       entidad: ['', Validators.required],
