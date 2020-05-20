@@ -19,25 +19,26 @@ public class Employee {
 	private Long id;
 	
 	@NonNull
+	private String nombre;
+	
+	@NonNull
 	@Column(unique = true)
-	private String username;
-	
-	@NonNull
-	private String fullname;
-	
-	@NonNull
 	private String email;
 	
 	@NonNull
-	private String phone;
+	private String telefono;
 	
 	@NonNull
-	private String entity;
+	private String entidad;
 	
 	@NonNull
 	private String cargo;
 	
-	private String location;
+	@NonNull
+	private String localidad;
+	
+	@NonNull
+	private String password;
 	
 	public Employee() {}
 	
@@ -45,20 +46,16 @@ public class Employee {
 		return id;
 	}
 	
-	public String getUsername() {
-		return username;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	
-	public String getFullname() {
-		return fullname;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public String getEmail() {
@@ -69,20 +66,20 @@ public class Employee {
 		this.email = email;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getTelefono() {
+		return telefono;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 
-	public String getEntity() {
-		return entity;
+	public String getEntidad() {
+		return entidad;
 	}
 
-	public void setEntity(String entity) {
-		this.entity = entity;
+	public void setEntidad(String entidad) {
+		this.entidad = entidad;
 	}
 
 	public String getCargo() {
@@ -93,15 +90,21 @@ public class Employee {
 		this.cargo = cargo;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getLocalidad() {
+		return localidad;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public String getPassword() {
+		return password;
 	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	
 }

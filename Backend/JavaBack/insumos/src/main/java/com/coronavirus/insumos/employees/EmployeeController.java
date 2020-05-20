@@ -25,11 +25,11 @@ public class EmployeeController extends BaseController<Employee, EmployeeDto> {
 		dto.setId(entity.getId());
 		dto.setCargo(entity.getCargo());
 		dto.setEmail(entity.getEmail());
-		dto.setEntity(entity.getEntity());
-		dto.setFullname(entity.getFullname());
-		dto.setLocation(entity.getLocation());
-		dto.setPhone(entity.getPhone());
-		dto.setUsername(entity.getUsername());
+		dto.setEntidad(entity.getEntidad());
+		dto.setNombre(entity.getNombre());
+		dto.setLocalidad(entity.getLocalidad());
+		dto.setTelefono(entity.getTelefono());
+		dto.setPassword(entity.getPassword());
 		return dto;
 	}
 
@@ -39,11 +39,12 @@ public class EmployeeController extends BaseController<Employee, EmployeeDto> {
 //		entity.setId(dto.getId());
 		entity.setCargo(dto.getCargo());
 		entity.setEmail(dto.getEmail());
-		entity.setEntity(dto.getEntity());
-		entity.setFullname(dto.getFullname());
-		entity.setLocation(dto.getLocation());
-		entity.setPhone(dto.getPhone());
-		entity.setUsername(dto.getUsername());
+		entity.setEntidad(dto.getEntidad());
+		entity.setNombre(dto.getNombre());
+		entity.setLocalidad(dto.getLocalidad());
+		entity.setTelefono(dto.getTelefono());
+		entity.setPassword(dto.getPassword());
+		
 		return entity;
 	}
 
@@ -51,12 +52,10 @@ public class EmployeeController extends BaseController<Employee, EmployeeDto> {
 	public void copyProperties(EmployeeDto dto, Employee entity) {
 		entity.setCargo(dto.getCargo());
 		entity.setEmail(dto.getEmail());
-		entity.setEntity(dto.getEntity());
-		entity.setFullname(dto.getFullname());
-		entity.setLocation(dto.getLocation());
-		entity.setPhone(dto.getPhone());
-		entity.setUsername(dto.getUsername());
+		entity.setEntidad(dto.getEntidad());
+		entity.setNombre(dto.getNombre());
+		entity.setLocalidad(dto.getLocalidad());
+		entity.setTelefono(dto.getTelefono());
+		entity.setPassword(dto.getPassword());
 	}
-	
-	
 }

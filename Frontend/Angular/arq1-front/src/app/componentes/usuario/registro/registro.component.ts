@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Usuario } from 'src/app/modelo/usuario';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../../validaciones/must-match.validator';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
   selector: 'app-registro',
@@ -12,17 +13,23 @@ import { MustMatch } from '../../validaciones/must-match.validator';
 export class RegistroComponent implements OnInit {
   formularioRegistro: FormGroup;
   submitted = false;
-  usuario:Usuario = new Usuario(null, "", "", "", "", "","", null);
+  usuario:Usuario = new Usuario("", "", "", "", "","", "");
 
-  constructor(private router: Router, private formBuilder: FormBuilder) {}
+  constructor(private router: Router, private formBuilder: FormBuilder, private usuarioService:UsuarioService) {}
 
   get f() { return this.formularioRegistro.controls; }
 
-  registrar() {
+  async registrar(): Promise<void> {
+    console.log(this.usuario);
     this.submitted = true;
-
-    if (this.formularioRegistro.valid) 
-      this.router.navigate(['/inicio'])
+    try {
+      if (this.formularioRegistro.valid){
+        await this.usuarioService.crearUsuario(this.usuario);
+        this.router.navigate(['/inicio']);
+      }
+    } catch (error) {
+        console.log(error.error);
+    }
   }
 
   ngOnInit() {
