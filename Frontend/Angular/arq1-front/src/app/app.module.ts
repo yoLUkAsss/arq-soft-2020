@@ -15,6 +15,10 @@ import { InicioComponent } from './componentes/inicio/inicio.component';
 
 /* Servicio */
 import { UsuarioService } from './servicios/usuario.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+/* Layout */
+import { ModalClose } from './layouts/modal-close/modal-close.layout';
 
 @NgModule({
   declarations: [
@@ -22,14 +26,16 @@ import { UsuarioService } from './servicios/usuario.service';
     LoginComponent,
     RegistroComponent,
     NavbarComponent,
-    InicioComponent
+    InicioComponent,
+    ModalClose
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule, 
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [UsuarioService],
   bootstrap: [AppComponent]

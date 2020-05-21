@@ -4,6 +4,8 @@ import { Usuario } from 'src/app/modelo/usuario';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../../validaciones/must-match.validator';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalClose } from 'src/app/layouts/modal-close/modal-close.layout';
 
 @Component({
   selector: 'app-registro',
@@ -15,7 +17,7 @@ export class RegistroComponent implements OnInit {
   submitted = false;
   
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private usuarioService:UsuarioService) {}
+  constructor(private router: Router, private formBuilder: FormBuilder, private usuarioService:UsuarioService, private _modalService: NgbModal) {}
 
   get f() { return this.formularioRegistro.controls; }
 
@@ -33,10 +35,12 @@ export class RegistroComponent implements OnInit {
           this.formularioRegistro.get('password').value
         );
         await this.usuarioService.crearUsuario(usuario);
-        this.router.navigate(['/inicio']);
+        this.crearModal('Alta de usuario', 'El usuario se ha dado de alta satistfactoriamente');
+
       }
     } catch (error) {
         console.log(error.error);
+        this.crearModal('Alta de usuario', 'No se ha podido crear el nuevo usuario, intente nuevamente mas tarde');
     }
   }
 
@@ -55,7 +59,13 @@ export class RegistroComponent implements OnInit {
     });
   }
 
-  
+  crearModal(titulo:string, descripcion:string){
+    const modalInform = this._modalService.open(ModalClose);
+    modalInform.componentInstance.title = titulo;
+    modalInform.componentInstance.description = descripcion;
+    this.router.navigate(['/inicio']);
+
   }
+}
 
 
