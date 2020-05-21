@@ -13,18 +13,26 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
 export class RegistroComponent implements OnInit {
   formularioRegistro: FormGroup;
   submitted = false;
-  usuario:Usuario = new Usuario("", "", "", "", "","", "");
+  
 
   constructor(private router: Router, private formBuilder: FormBuilder, private usuarioService:UsuarioService) {}
 
   get f() { return this.formularioRegistro.controls; }
 
   async registrar(): Promise<void> {
-    console.log(this.usuario);
     this.submitted = true;
     try {
       if (this.formularioRegistro.valid){
-        await this.usuarioService.crearUsuario(this.usuario);
+        var usuario:Usuario = new Usuario(
+          this.formularioRegistro.get('nombre').value,
+          this.formularioRegistro.get('email').value,
+          this.formularioRegistro.get('telefono').value,
+          this.formularioRegistro.get('entidad').value,
+          this.formularioRegistro.get('cargo').value,
+          this.formularioRegistro.get('localidad').value,
+          this.formularioRegistro.get('password').value
+        );
+        await this.usuarioService.crearUsuario(usuario);
         this.router.navigate(['/inicio']);
       }
     } catch (error) {
