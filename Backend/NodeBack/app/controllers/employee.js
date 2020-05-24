@@ -25,21 +25,29 @@ exports.getById = function(req, res) {
 exports.create = function(req, res) {
     console.log('POST /users')
 
-    var newEmployee = new Employee({
-        username: req.body.username,
-        password: req.body.password,
-        fullname: req.body.fullname,
-        phone: req.body.phone,
-        entity: req.body.entity,
-        position: req.body.position,
-        location: req.body.location
-    })
-
-    newEmployee.save(function(err, newEmployee) {
+    Employee.findOne( {username: req.body.username} , function(err, employee) {
         if(err) res.status(500).send(err.message);
-        
-        res.status(200).jsonp(newEmployee);
-    });
+
+        if (employee === null) {
+            var newEmployee = new Employee({
+                username: req.body.username,
+                password: req.body.password,
+                fullname: req.body.fullname,
+                phone: req.body.phone,
+                entity: req.body.entity,
+                position: req.body.position,
+                location: req.body.location
+            })
+            newEmployee.save(function(err, newEmployee) {
+                if(err) res.status(500).send(err.message);
+                
+                res.status(200).jsonp(newEmployee);
+            });
+        } else {
+            res.status(400).send('Usuario existente')
+        }
+
+    })
 };
 
 exports.update = function(req, res) {
