@@ -6,13 +6,13 @@ import com.coronavirus.insumos.employees.Employee;
 public class EmployeeDto extends BaseDTO<Employee>{
 	
 	private Long id;
-	private String username;
-	private String fullname;
+	private String nombre;
 	private String email;
-	private String phone;
-	private String entity;
+	private String telefono;
+	private String entidad;
 	private String cargo;
-	private String location;
+	private String localidad;
+	private String password;
 	
 	public EmployeeDto() {}
 
@@ -25,21 +25,13 @@ public class EmployeeDto extends BaseDTO<Employee>{
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	public String getUsername() {
-		return username;
+
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getFullname() {
-		return fullname;
-	}
-
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public String getEmail() {
@@ -50,20 +42,20 @@ public class EmployeeDto extends BaseDTO<Employee>{
 		this.email = email;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getTelefono() {
+		return telefono;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 
-	public String getEntity() {
-		return entity;
+	public String getEntidad() {
+		return entidad;
 	}
 
-	public void setEntity(String entity) {
-		this.entity = entity;
+	public void setEntidad(String entidad) {
+		this.entidad = entidad;
 	}
 
 	public String getCargo() {
@@ -74,11 +66,22 @@ public class EmployeeDto extends BaseDTO<Employee>{
 		this.cargo = cargo;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getLocalidad() {
+		return localidad;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	
+	
 }
