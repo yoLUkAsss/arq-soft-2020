@@ -6,7 +6,13 @@ const dbUrl           = 'mongodb://localhost:27017/INSUMOS'
 
 const app             = express();
 
-app.use(cors());
+var corsOptions = {
+  origin: '*',
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  optionsSuccessStatus: 204,
+  preflightContinue: true
+}
+app.use(cors(corsOptions));
 
 // parse requests of content-type: application/json
 app.use(bodyParser.json());
@@ -21,8 +27,8 @@ var employeeModel     = require('./app/models/employee')
 var router            = express.Router();
 var employeeRoutes    = require('./app/routes/employeeRoutes')
 
-router.get('/', function(req, res) {
-  res.send("Hello World!")
+router.get('/ping', function(req, res) {
+  res.status(200).send("Pong")
 })
 
 app.use(router)
