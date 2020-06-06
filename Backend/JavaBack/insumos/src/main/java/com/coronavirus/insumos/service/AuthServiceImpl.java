@@ -1,18 +1,19 @@
 package com.coronavirus.insumos.service;
 
-import java.util.List;
+
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Service;
 
 import com.coronavirus.insumos.dto.LoginRequest;
 import com.coronavirus.insumos.dto.LoginResponse;
 import com.coronavirus.insumos.modelo.Usuario;
 import com.coronavirus.insumos.repository.UsuarioRepository;
+import com.coronavirus.insumos.utils.TokenProvider;
+
 
 
 @Service
@@ -20,6 +21,8 @@ public class AuthServiceImpl implements AuthService{
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
+	private TokenProvider tokenProvider = new TokenProvider();
 	
 	@Override
 	@Transactional
@@ -41,9 +44,10 @@ public class AuthServiceImpl implements AuthService{
 	@Override
 	public LoginResponse login(LoginRequest request) throws Exception {
 		if (credencialesValidas(request.getUsuario(), request.getPassword())){
+			String token = tokenProvider.generarJWT(request.getUsuario());
 			LoginResponse response = new LoginResponse();
 			response.setUsuario(request.getUsuario());
-			response.setToken(request.getPassword());			
+			response.setToken(token);			
 			return response;
 		}else {
 			throw new Exception("Usuario invalido");
@@ -55,6 +59,5 @@ public class AuthServiceImpl implements AuthService{
 		Optional<Usuario> usuario = Optional.ofNullable(usuarioRepository.getByUserYPasw(email, password));
 		return (usuario.isPresent());
 	}
-	
 
 }
