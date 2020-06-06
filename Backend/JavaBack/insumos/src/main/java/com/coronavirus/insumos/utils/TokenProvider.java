@@ -14,10 +14,10 @@ import io.jsonwebtoken.Claims;
 public class TokenProvider {
 	
 	//key privada, llevar a propertie o BD.
-	private static String SECRET_KEY = "oeRaYY7Wo24sDqKSX3IM9ASGmdGPmkTd9jo1QTy4b7P9Ze5_9hKolVX8xNrQDcNRfVEdTZNOuOyqEGhXEbdJI-ZQ19k_o9MI0y3eZN2lp9jow55FfXMiINEdt1XR85VipRLSOkT6kSpzs2x-jbLDiz9iFVzkd81YKxMgPA7VfZeQUm4n-mOmnWMaVX30zGFU4L3oPBctYKkl4dYfqYWqRNfrgPJVi5DGFjywgxx0ASEiJHtV72paI3fDR2XwlSkyhhmY-ICjCRmsJN4fX1pdoL8a18-aQrvyu4j0Os6dVPYIoPvvY0SAZtWYKHfM15g7A3HD4cVREf9cUsprCRK93w";
+	private static String SECRET_KEY = "clave";
 
     
-    public static String generarJWT(String subject) {
+    public static String generarJWT(String subject, String rol) {
     	//tiempo de expiracion.
     	int ttlMillis = 600000;
 
@@ -35,7 +35,8 @@ public class TokenProvider {
         JwtBuilder builder = Jwts.builder().setId("idToken")
                 .setIssuedAt(now)
                 .setSubject(subject)
-                .signWith(signatureAlgorithm, signingKey);
+                .signWith(signatureAlgorithm, signingKey)
+                .claim("role", rol);
 
         //seteo expiracion de token.
             long expMillis = nowMillis + ttlMillis;
