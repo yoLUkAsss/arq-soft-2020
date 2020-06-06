@@ -9,6 +9,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.coronavirus.insumos.dto.LoginRequest;
 import com.coronavirus.insumos.modelo.Usuario;
 
 @Path("insumos")
@@ -27,4 +28,9 @@ public interface InsumosApi {
 	@Path("/auth/validarEmail")
 	@Produces(MediaType.APPLICATION_JSON)
 	Response emailValido(@QueryParam("email") String email);
+	
+	@POST
+	@Path("/auth/login")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response login(LoginRequest request);
 }
