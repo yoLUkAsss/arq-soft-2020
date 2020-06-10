@@ -44,7 +44,7 @@ public class TokenProvider {
             builder.setExpiration(exp);
 
         //retorno del bearer.
-        return "Bearer "+builder.compact();
+        return builder.compact();
     }
 
     public static Claims decodeJWT(String jwt) {
